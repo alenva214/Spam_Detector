@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train the Model</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Train the Model</h1>
+        {% if error %}
+            <div class="error">
+                <h2>Error</h2>
+                <p>{{ error }}</p>
+            </div>
+        {% endif %}
+        {% if message %}
+            <div class="success">
+                <h2>Success</h2>
+                <p>{{ message }}</p>
+                <h3>Model Performance:</h3>
+                <p>Accuracy: {{ accuracy }}</p>
+                <p>Precision: {{ precision }}</p>
+                <p>Recall: {{ recall }}</p>
+                <p>F1 Score: {{ f1 }}</p>
+            </div>
+        {% endif %}
+        <form action="{{ url_for('train') }}" method="post">
+            <div class="form-group">
+                <label for="email_content">Enter email content (one per line):</label>
+                <textarea name="email_content" id="email_content" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="labels">Enter labels (spam/ham, one per line):</label>
+                <textarea name="labels" id="labels" required></textarea>
+            </div>
+            <button type="submit" class="btn">Train Model</button>
+        </form>
+        <a href="{{ url_for('home') }}" class="btn">Go Back</a>
+    </div>
+</body>
+</html>

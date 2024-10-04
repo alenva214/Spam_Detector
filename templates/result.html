@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam Classification Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Spam Classification Result</h1>
+        {% if error %}
+            <div class="error">
+                <h2>Error</h2>
+                <p>{{ error }}</p>
+                <p>Please try again or contact the administrator if the problem persists.</p>
+            </div>
+        {% else %}
+            <div class="result">
+                <h2>Classification Result</h2>
+                <p>Email is classified as: <strong>{{ prediction }}</strong></p>
+                <p>Probability of being spam: <strong>{{ probability }}</strong></p>
+            </div>
+        {% endif %}
+        <a href="{{ url_for('home') }}" class="btn">Try another email</a>
+    </div>
+</body>
+</html>
